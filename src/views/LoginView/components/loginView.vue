@@ -98,6 +98,7 @@ const formState = reactive({
   password: "",
   remember: true,
 });
+const isboolean = ref<number>(1);
 
 // 定义向父组件发送的自定义事件
 const emits = defineEmits(["update"]);
@@ -120,16 +121,25 @@ const validateUser = async (_rule: Rule, value: string) => {
   }
 
   // 验证用户名是否已存在
-  const res = await isUserExists({ username: value });
-  if (res === 404) {
+  const res1 = await isUserExists({ username: value });
+  if (res1 === 404) {
     return Promise.reject("用户名不存在");
+  }
+  if (value != "" && res1 === 0) {
+    isboolean.value = 2;
+    console.log(isboolean);
   }
   // 请求成功，用户名不存在
   return Promise.resolve();
 };
 // 验证密码的异步函数
 let validatePass = async (_rule: Rule, value: string) => {
-  if (value.length <= 6) {
+  if (value.length >= 6 && isboolean.value === 2) {
+    isboolean.value = 3;
+  } else {
+    isboolean.value = 2;
+  }
+  if (value.length < 6) {
     return Promise.reject("密码不少于6位");
   } else {
     return Promise.resolve();
@@ -144,10 +154,14 @@ const rules: Record<string, Rule[]> = {
 };
 // console.log(rules);
 const disabled = computed(() => {
-  // if (formState.username != "" && formState.password != "") {
-
-  // }
-  return false;
+  // console.log(isboolean);
+  if (isboolean.value == 1) {
+    return true;
+  } else if (isboolean.value == 2) {
+    return true;
+  } else {
+    return false;
+  }
 });
 </script>
 
