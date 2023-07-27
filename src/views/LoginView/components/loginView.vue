@@ -98,6 +98,7 @@ const formState = reactive({
   password: "",
   remember: true,
 });
+
 const isboolean = ref<number>(404);
 
 // 定义向父组件发送的自定义事件
@@ -129,6 +130,8 @@ const validateUser = async (_rule: Rule, value: string) => {
   isboolean.value = res1;
   console.log(isboolean.value);
 
+    return Promise.reject("用户名不存在");
+  }
   // 请求成功，用户名不存在
   return Promise.resolve();
 };
