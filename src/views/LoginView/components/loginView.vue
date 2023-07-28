@@ -72,7 +72,7 @@
           type="primary"
           html-type="submit"
           finish
-          @click="updateParentValuee"
+          @click="onShow"
           class="login-form-button w-[320px] h-[40px] bg-[#409EFF]"
         >
           登录
@@ -85,12 +85,25 @@
         </a-button>
       </div>
     </a-form>
+
+    <!-- 滑块验证 开始 -->
+    <Vcode
+      :show="isShow"
+      @success="onSuccess"
+      @close="onClose"
+      :canvasWidth="300"
+      :canvasHeight="200"
+      failText="验证未通过，拖动滑块将息浮图傍正确合并"
+    />
+    <!-- 滑块验证 结束 -->
   </div>
 </template>
 
 <script lang="ts" setup>
 import type { Rule } from "ant-design-vue/es/form";
-import { isUserExists } from "@/service";
+import { isUserExists, isUsersLogin } from "@/service";
+import Vcode from "vue3-puzzle-vcode";
+import router from "@/router";
 
 // 登录
 const formState = reactive({
@@ -106,8 +119,6 @@ const emits = defineEmits(["update"]);
 // 点击按钮时触发的方法  触发父组件的自定义事件，将新值传递给父组件
 const updateParentValue = () => emits("update", "registerView");
 const updateParentValueS = () => emits("update", "forgotPasswordView");
-const updateParentValuee = () =>
-  emits("update", "loginView", true, formState.username, formState.password);
 
 // 验证用户名的异步函数
 const validateUser = async (_rule: Rule, value: string) => {
@@ -127,7 +138,6 @@ const validateUser = async (_rule: Rule, value: string) => {
     return Promise.reject("用户名不存在");
   }
   isboolean.value = res1;
-  console.log(isboolean.value);
 
   // 请求成功，用户名不存在
   return Promise.resolve();
@@ -147,7 +157,7 @@ const rules: Record<string, Rule[]> = {
   // 密码
   password: [{ required: true, validator: validatePass, trigger: "blur" }],
 };
-// console.log(rules);
+
 const disabled = computed(() => {
   if (
     formState.username != "" &&
@@ -159,6 +169,45 @@ const disabled = computed(() => {
   }
   return true;
 });
+
+// 滑块验证 开始
+const isShow = ref(false);
+
+// 用户请求
+const { run: runUserLogin } = useRequest(
+  () =>
+    isUsersLogin({
+      password: formState.password,
+      username: formState.username,
+    }),
+  {
+    manual: true,
+    // 请求成功时
+    onSuccess: () => {
+      router.push("/indexView");
+    },
+    // 请求失败时
+    onError: () => {
+      onClose();
+    },
+  },
+);
+
+// 显示滑块
+const onShow = () => {
+  isShow.value = true;
+};
+
+// 隐藏滑块
+const onClose = () => {
+  isShow.value = false;
+};
+
+// 验证通过时会触发，返回值是用户移动的距离跟目标距离的偏差值 px
+const onSuccess = () => {
+  runUserLogin();
+};
+// 滑块验证 结束
 </script>
 
 <style lang="scss" scoped>

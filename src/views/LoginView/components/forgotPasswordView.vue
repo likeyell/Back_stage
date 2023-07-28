@@ -138,13 +138,6 @@ const { data: isSendSuccess, run: runSendverificationcodes } = useRequest(
       // 启动倒计时
       startCountdown();
     },
-    // 请求失败时
-    onError: () => {
-      notification.open({
-        type: "error",
-        message: `验证码发送失败`,
-      });
-    },
   },
 );
 
@@ -164,13 +157,6 @@ const { run: runResetPassword } = useRequest(
       notification.open({
         type: "success",
         message: `密码设置成功`,
-      });
-    },
-    // 请求失败时
-    onError: () => {
-      notification.open({
-        type: "error",
-        message: `验证码错误或已使用过`,
       });
     },
   },

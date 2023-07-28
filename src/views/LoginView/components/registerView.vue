@@ -134,6 +134,7 @@ import {
   registeredAccount,
 } from "@/service";
 import useCountdown from "@/hooks/useCountdown";
+import router from "@/router";
 
 // 使用倒计时功能函数，并传入初始值 30 秒
 const { countdown, isCountdownRunning, startCountdown } = useCountdown(30);
@@ -194,13 +195,7 @@ const { run: runRegisteredAccount } = useRequest(
         type: "success",
         message: `账号注册成功`,
       });
-    },
-    // 请求失败时
-    onError: () => {
-      notification.open({
-        type: "error",
-        message: `验证码错误或已使用过或已过期`,
-      });
+      router.push("/indexView");
     },
   },
 );
