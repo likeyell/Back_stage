@@ -55,20 +55,6 @@
     </div>
     <!-- 注册、登录 结束 -->
 
-    <!-- 滑动验证 -->
-    <div
-      class="fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
-    >
-      <imgCheck
-        v-if="toggle"
-        @update="handleUpdate"
-        :propValue="usernamesong"
-        :propPassword="passwordsong"
-      />
-    </div>
-
-    <!-- 滑动验证结束 -->
-
     <!-- 底部信息开始 -->
     <div
       class="fixed bottom-0 w-screen flex items-center justify-center h-[48px] text-[#999] text-[16px]"
@@ -88,7 +74,6 @@
 import loginView from "./components/loginView.vue";
 import registerView from "./components/registerView.vue";
 import forgotPasswordView from "./components/forgotPasswordView.vue";
-import imgCheck from "./components/imgCheck.vue";
 
 // 切换选项卡
 let isSwitch = ref<"loginView" | "registerView" | "forgotPasswordView">(
@@ -96,20 +81,13 @@ let isSwitch = ref<"loginView" | "registerView" | "forgotPasswordView">(
 );
 let toggle = ref(false);
 
-let usernamesong = ref("");
-let passwordsong = ref("");
-
 // 在监听回调中更新父组件的值
 const handleUpdate = (
   newValue: "loginView" | "registerView" | "forgotPasswordView",
   isBoolean: boolean,
-  usernameparent: string,
-  passwordparent: string,
 ) => {
   isSwitch.value = newValue;
   toggle.value = isBoolean;
-  usernamesong.value = usernameparent;
-  passwordsong.value = passwordparent;
 };
 </script>
 

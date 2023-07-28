@@ -41,4 +41,4 @@ export const registeredAccount = async (data: {
 export const isUsersLogin = async (data: {
   password: string;
   username: string;
-}) => (await http.post<IBaseResponse>("/api/v1/users/login", data)).data.code;
+}) => (await http.post<TLoginResponse>("/api/v1/users/login", data)).data.code;
