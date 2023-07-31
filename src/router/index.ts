@@ -7,11 +7,13 @@ const routes: Array<RouteRecordRaw> = [
     path: "/",
     component: LoginView,
   },
+  // 登录、注册
   {
     path: "/LoginView",
     name: "LoginView",
     component: LoginView,
   },
+  // 首页
   {
     path: "/indexView",
     name: "indexView",

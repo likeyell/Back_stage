@@ -101,9 +101,11 @@
 
 <script lang="ts" setup>
 import type { Rule } from "ant-design-vue/es/form";
+import { notification } from "ant-design-vue";
 import { isUserExists, isUsersLogin } from "@/service";
 import Vcode from "vue3-puzzle-vcode";
 import router from "@/router";
+import getCurrentTimePeriod from "@/hooks/useGetCurrentTimePeriod";
 
 // 登录
 const formState = reactive({
@@ -185,6 +187,10 @@ const { run: runUserLogin } = useRequest(
     // 请求成功时
     onSuccess: () => {
       router.push("/indexView");
+      notification.success({
+        message: `${getCurrentTimePeriod()}好`,
+        description: "欢迎登录Arco",
+      });
     },
     // 请求失败时
     onError: () => {
