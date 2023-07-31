@@ -384,7 +384,7 @@ const { data: dataMyTask, run: runMyTask } = useRequest(
 
 runMyTask(); // 初始化请求数据
 watch([selectorParameters, tabKey], () => {
-  runMyTask(); // 监听任务完成情况和查询方式变化，重新请求数据
+  runMyTask(); // 监听任务完成情况 和查询方式变化，重新请求数据
 });
 // 我的任务 结束
 </script>
