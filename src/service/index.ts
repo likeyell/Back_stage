@@ -42,3 +42,26 @@ export const isUsersLogin = async (data: {
   password: string;
   username: string;
 }) => (await http.post<TLoginResponse>("/api/v1/users/login", data)).data.code;
+
+// 用户信息
+export const userInformation = async () =>
+  (await http.get<TUserInformation>("/api/v1/users/user_info")).data;
+
+// 进行中项目
+export const ongoingProject = async (params: {
+  is_recycle: number;
+  is_archived: number;
+}) =>
+  (
+    await http.get<TOngoingProject>("/api/v1/projects/list", {
+      params,
+    })
+  ).data;
+
+// 我的任务
+export const myTask = async (params: TMyTaskParams) =>
+  (
+    await http.get<TMyTask>("/api/v1/tasks/list", {
+      params,
+    })
+  ).data;
