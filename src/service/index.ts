@@ -56,7 +56,7 @@ export const ongoingProject = async (params: {
     await http.get<TOngoingProject>("/api/v1/projects/list", {
       params,
     })
-  ).data;
+  ).data.data.rows;
 
 // 我的任务
 export const myTask = async (params: TMyTaskParams) =>
@@ -64,4 +64,22 @@ export const myTask = async (params: TMyTaskParams) =>
     await http.get<TMyTask>("/api/v1/tasks/list", {
       params,
     })
-  ).data;
+  ).data.data;
+
+// 项目者信息
+export const projectCreatorInformation = async (params: {
+  keyword?: string;
+  limit?: number;
+  offset?: number;
+  project_id?: string | string[];
+}) =>
+  (
+    await http.get<TprojectCreatorInformation>("/api/v1/users/list", {
+      params,
+    })
+  ).data.data;
+
+// 获取路由配置信息
+export const routingConfigurationInformation = async () =>
+  (await http.get<TroutingConfigurationInformation>("/api/v1/menus/user_menus"))
+    .data.data;

@@ -5,6 +5,7 @@ const { AntDesignVueResolver } = require("unplugin-vue-components/resolvers");
 
 module.exports = defineConfig({
   transpileDependencies: true,
+  runtimeCompiler: true,
   devServer: {
     open: true,
   },

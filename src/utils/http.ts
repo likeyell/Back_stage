@@ -33,7 +33,7 @@ http.interceptors.response.use(
     return option;
   },
   (error: AxiosError<IBaseResponse>) => {
-    let errorMessage = "有没有预先定义的错误，请更新";
+    let errorMessage = "有预先未定义的错误，请更新";
 
     if (error.code === "ERR_NETWORK") {
       errorMessage = "网络似乎断开了连接";

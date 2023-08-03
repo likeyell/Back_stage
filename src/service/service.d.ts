@@ -199,3 +199,491 @@ type TMyTaskParams =
       is_recycle: number;
       creator_id: number;
     };
+
+type TprojectCreatorInformation = IBaseResponse<TprojectCreatorInformationData>;
+type TprojectCreatorInformationData = {
+  count: number;
+  rows: {
+    id: number;
+    user_id_github: number;
+    username: string;
+    department_id: object;
+    nickname: string;
+    email: string;
+    state: number;
+    phone: string;
+    avatar: string;
+    company: string;
+    city: string;
+    last_login: string;
+    created_at: string;
+    updated_at: string;
+    projects: {
+      id: number;
+      user_projects: {
+        id: number;
+        user_id: number;
+        project_id: number;
+        created_at: string;
+        updated_at: string;
+      };
+    }[];
+    roles: {
+      id: number;
+      name: string;
+      user_roles: {
+        id: number;
+        user_id: number;
+        role_id: number;
+        created_at: string;
+        updated_at: string;
+      };
+    }[];
+    department: object;
+  }[];
+};
+
+type TroutingConfigurationInformation =
+  IBaseResponse<TroutingConfigurationInformationData>;
+type TroutingConfigurationInformationData = [
+  {
+    id: number;
+    name: string;
+    path: string;
+    parent_id: number;
+    icon: string;
+    title: string;
+    hidden: number;
+    always_show: number;
+    keep_alive: number;
+    target: string;
+    component: string;
+    redirect: string;
+    sort: number;
+    role_menus: {
+      id: number;
+      role_id: number;
+      menu_id: number;
+      created_at: string;
+      updated_at: string;
+    };
+  },
+  {
+    id: number;
+    name: string;
+    path: string;
+    parent_id: number;
+    icon: string;
+    title: string;
+    hidden: number;
+    always_show: number;
+    keep_alive: number;
+    target: object;
+    component: string;
+    redirect: string;
+    sort: number;
+    role_menus: {
+      id: number;
+      role_id: number;
+      menu_id: number;
+      created_at: string;
+      updated_at: string;
+    };
+  },
+  {
+    id: number;
+    name: string;
+    path: string;
+    parent_id: number;
+    icon: string;
+    title: string;
+    hidden: number;
+    always_show: number;
+    keep_alive: number;
+    target: object;
+    component: string;
+    redirect: string;
+    sort: number;
+    role_menus: {
+      id: number;
+      role_id: number;
+      menu_id: number;
+      created_at: string;
+      updated_at: string;
+    };
+  },
+  {
+    id: number;
+    name: string;
+    path: string;
+    parent_id: number;
+    icon: string;
+    title: string;
+    hidden: number;
+    always_show: number;
+    keep_alive: number;
+    target: object;
+    component: string;
+    redirect: string;
+    sort: number;
+    role_menus: {
+      id: number;
+      role_id: number;
+      menu_id: number;
+      created_at: string;
+      updated_at: string;
+    };
+  },
+  {
+    id: number;
+    name: string;
+    path: string;
+    parent_id: number;
+    icon: string;
+    title: string;
+    hidden: number;
+    always_show: number;
+    keep_alive: number;
+    target: object;
+    component: string;
+    redirect: string;
+    sort: number;
+    role_menus: {
+      id: number;
+      role_id: number;
+      menu_id: number;
+      created_at: string;
+      updated_at: string;
+    };
+  },
+  {
+    id: number;
+    name: string;
+    path: string;
+    parent_id: number;
+    icon: string;
+    title: string;
+    hidden: number;
+    always_show: number;
+    keep_alive: number;
+    target: object;
+    component: string;
+    redirect: string;
+    sort: number;
+    role_menus: {
+      id: number;
+      role_id: number;
+      menu_id: number;
+      created_at: string;
+      updated_at: string;
+    };
+  },
+  {
+    id: number;
+    name: string;
+    path: string;
+    parent_id: number;
+    icon: string;
+    title: string;
+    hidden: number;
+    always_show: number;
+    keep_alive: number;
+    target: object;
+    component: string;
+    redirect: object;
+    sort: number;
+    role_menus: {
+      id: number;
+      role_id: number;
+      menu_id: number;
+      created_at: string;
+      updated_at: string;
+    };
+  },
+  {
+    id: number;
+    name: string;
+    path: string;
+    parent_id: number;
+    icon: string;
+    title: string;
+    hidden: number;
+    always_show: number;
+    keep_alive: number;
+    target: object;
+    component: string;
+    redirect: object;
+    sort: number;
+    role_menus: {
+      id: number;
+      role_id: number;
+      menu_id: number;
+      created_at: string;
+      updated_at: string;
+    };
+  },
+  {
+    id: number;
+    name: string;
+    path: string;
+    parent_id: number;
+    icon: string;
+    title: string;
+    hidden: number;
+    always_show: number;
+    keep_alive: number;
+    target: object;
+    component: string;
+    redirect: object;
+    sort: number;
+    role_menus: {
+      id: number;
+      role_id: number;
+      menu_id: number;
+      created_at: string;
+      updated_at: string;
+    };
+  },
+  {
+    id: number;
+    name: string;
+    path: string;
+    parent_id: number;
+    icon: string;
+    title: string;
+    hidden: number;
+    always_show: number;
+    keep_alive: number;
+    target: object;
+    component: string;
+    redirect: object;
+    sort: number;
+    role_menus: {
+      id: number;
+      role_id: number;
+      menu_id: number;
+      created_at: string;
+      updated_at: string;
+    };
+  },
+  {
+    id: number;
+    name: string;
+    path: string;
+    parent_id: number;
+    icon: string;
+    title: string;
+    hidden: number;
+    always_show: number;
+    keep_alive: number;
+    target: object;
+    component: string;
+    redirect: object;
+    sort: number;
+    role_menus: {
+      id: number;
+      role_id: number;
+      menu_id: number;
+      created_at: string;
+      updated_at: string;
+    };
+  },
+  {
+    id: number;
+    name: string;
+    path: string;
+    parent_id: number;
+    icon: string;
+    title: string;
+    hidden: number;
+    always_show: number;
+    keep_alive: number;
+    target: object;
+    component: string;
+    redirect: object;
+    sort: number;
+    role_menus: {
+      id: number;
+      role_id: number;
+      menu_id: number;
+      created_at: string;
+      updated_at: string;
+    };
+  },
+  {
+    id: number;
+    name: string;
+    path: string;
+    parent_id: number;
+    icon: string;
+    title: string;
+    hidden: number;
+    always_show: number;
+    keep_alive: number;
+    target: object;
+    component: string;
+    redirect: object;
+    sort: number;
+    role_menus: {
+      id: number;
+      role_id: number;
+      menu_id: number;
+      created_at: string;
+      updated_at: string;
+    };
+  },
+  {
+    id: number;
+    name: string;
+    path: string;
+    parent_id: number;
+    icon: object;
+    title: string;
+    hidden: number;
+    always_show: number;
+    keep_alive: number;
+    target: object;
+    component: string;
+    redirect: object;
+    sort: number;
+    role_menus: {
+      id: number;
+      role_id: number;
+      menu_id: number;
+      created_at: string;
+      updated_at: string;
+    };
+  },
+  {
+    id: number;
+    name: string;
+    path: string;
+    parent_id: number;
+    icon: string;
+    title: string;
+    hidden: number;
+    always_show: number;
+    keep_alive: number;
+    target: object;
+    component: string;
+    redirect: object;
+    sort: number;
+    role_menus: {
+      id: number;
+      role_id: number;
+      menu_id: number;
+      created_at: string;
+      updated_at: string;
+    };
+  },
+  {
+    id: number;
+    name: string;
+    path: string;
+    parent_id: number;
+    icon: object;
+    title: object;
+    hidden: number;
+    always_show: number;
+    keep_alive: number;
+    target: object;
+    component: string;
+    redirect: string;
+    sort: number;
+    role_menus: {
+      id: number;
+      role_id: number;
+      menu_id: number;
+      created_at: string;
+      updated_at: string;
+    };
+  },
+  {
+    id: number;
+    name: string;
+    path: string;
+    parent_id: number;
+    icon: object;
+    title: string;
+    hidden: number;
+    always_show: number;
+    keep_alive: number;
+    target: object;
+    component: string;
+    redirect: object;
+    sort: number;
+    role_menus: {
+      id: number;
+      role_id: number;
+      menu_id: number;
+      created_at: string;
+      updated_at: string;
+    };
+  },
+  {
+    id: number;
+    name: string;
+    path: string;
+    parent_id: number;
+    icon: string;
+    title: string;
+    hidden: number;
+    always_show: number;
+    keep_alive: number;
+    target: object;
+    component: string;
+    redirect: object;
+    sort: number;
+    role_menus: {
+      id: number;
+      role_id: number;
+      menu_id: number;
+      created_at: string;
+      updated_at: string;
+    };
+  },
+  {
+    id: number;
+    name: string;
+    path: string;
+    parent_id: number;
+    icon: string;
+    title: string;
+    hidden: number;
+    always_show: number;
+    keep_alive: number;
+    target: object;
+    component: string;
+    redirect: object;
+    sort: number;
+    role_menus: {
+      id: number;
+      role_id: number;
+      menu_id: number;
+      created_at: string;
+      updated_at: string;
+    };
+  },
+  {
+    id: number;
+    name: string;
+    path: string;
+    parent_id: number;
+    icon: object;
+    title: string;
+    hidden: number;
+    always_show: number;
+    keep_alive: number;
+    target: object;
+    component: string;
+    redirect: object;
+    sort: number;
+    role_menus: {
+      id: number;
+      role_id: number;
+      menu_id: number;
+      created_at: string;
+      updated_at: string;
+    };
+  },
+];

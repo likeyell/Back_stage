@@ -140,13 +140,13 @@
       >
         <template #content>
           <div
-            class="flex items-center w-[130px] h-[36px] px-[10px] cursor-pointer hover:bg-[#e6f7ff]"
+            class="flex items-center w-[100px] h-[36px] px-[10px] cursor-pointer hover:bg-[#e6f7ff]"
           >
             <Icon icon="icon-park-outline:user" class="text-[14px] mr-[5px]" />
             个人设置
           </div>
           <div
-            class="flex items-center w-[130px] h-[36px] px-[10px] cursor-pointer hover:bg-[#e6f7ff]"
+            class="flex items-center w-[100px] h-[36px] px-[10px] cursor-pointer hover:bg-[#e6f7ff]"
             @click="showModal"
           >
             <Icon
@@ -200,7 +200,9 @@
 <script lang="ts" setup>
 import { userInformation } from "@/service/index";
 import store from "storejs";
-import router from "@/router";
+
+// 获取路由实例
+const router = useRouter();
 
 // 请求 用户信息
 const { data: dataInformation } = useRequest(() => userInformation());
@@ -209,7 +211,7 @@ const { data: dataInformation } = useRequest(() => userInformation());
 const selectedKeys = ref<string[]>(["1"]);
 const onMenuItemWorkbench = function () {
   selectedKeys.value = ["1"];
-  router.push("/indexView");
+  router.push("/index");
 };
 
 const onMenuItemProject = function () {
@@ -219,6 +221,29 @@ const onMenuItemProject = function () {
 const onMenuItemDepartment = function () {
   selectedKeys.value = ["3"];
 };
+
+// 接收路由数据
+const route = useRoute();
+
+const determineTheCurrentPage = () => {
+  if (route.path.includes("index")) {
+    selectedKeys.value = ["1"];
+  } else if (route.path.includes("projectManagement")) {
+    selectedKeys.value = ["2"];
+  } else if (route.path.includes("departmentManagement")) {
+    selectedKeys.value = ["3"];
+  }
+};
+
+watch(
+  route,
+  () => {
+    determineTheCurrentPage();
+  },
+  {
+    immediate: true,
+  },
+);
 
 // 退出登录 弹出框
 const open = ref<boolean>(false);

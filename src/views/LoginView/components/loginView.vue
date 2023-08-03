@@ -102,10 +102,33 @@
 <script lang="ts" setup>
 import type { Rule } from "ant-design-vue/es/form";
 import { notification } from "ant-design-vue";
-import { isUserExists, isUsersLogin } from "@/service";
+import {
+  isUserExists,
+  isUsersLogin,
+  routingConfigurationInformation,
+} from "@/service";
 import Vcode from "vue3-puzzle-vcode";
-import router from "@/router";
 import getCurrentTimePeriod from "@/hooks/useGetCurrentTimePeriod";
+import dynamicRouting from "@/utils/menu";
+
+// 获取路由实例
+const router = useRouter();
+
+// 请求 路由
+const { data: routingData, run: runRoutingConfigurationInformation } =
+  useRequest(() => routingConfigurationInformation(), {
+    manual: true,
+    onSuccess: () => {
+      if (routingData.value) {
+        dynamicRouting(routingData.value);
+      }
+      notification.success({
+        message: `${getCurrentTimePeriod()}好`,
+        description: "欢迎登录Arco",
+      });
+      router.push("/index");
+    },
+  });
 
 // 登录
 const formState = reactive({
@@ -186,11 +209,7 @@ const { run: runUserLogin } = useRequest(
     manual: true,
     // 请求成功时
     onSuccess: () => {
-      router.push("/indexView");
-      notification.success({
-        message: `${getCurrentTimePeriod()}好`,
-        description: "欢迎登录Arco",
-      });
+      runRoutingConfigurationInformation();
     },
     // 请求失败时
     onError: () => {

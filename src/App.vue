@@ -1,22 +1,42 @@
 <template>
-  <navigationMenuView v-if="navigationDisplayHide()"></navigationMenuView>
   <router-view />
 </template>
 
 <script lang="ts" setup>
+import store from "storejs";
+import { routingConfigurationInformation } from "@/service";
+import dynamicRouting from "@/utils/menu";
+
+const router = useRouter();
 const route = useRoute();
 
-const navigationDisplayHide = () => {
-  // console.log(route.path); // 输出当前页面的路径部分
-  if (route.path === "/" || route.path === "/LoginView") {
-    return false;
-  } else {
-    return true;
-  }
-};
+// 请求 路由
+const { data: routingData, run: runRoutingConfigurationInformation } =
+  useRequest(() => routingConfigurationInformation(), {
+    manual: true,
+    onSuccess: () => {
+      if (routingData.value) {
+        dynamicRouting(routingData.value);
+        router.push(route.path);
+      }
+    },
+  });
+
+if (store.get("arco_auth")) {
+  runRoutingConfigurationInformation();
+} else {
+  router.push("/LoginView");
+}
 </script>
 
 <style lang="scss">
+/* 容器高度、颜色 */
+.contentHeight {
+  height: calc(100vh - 65px);
+  background: #f7f7f7;
+  padding: 20px;
+}
+
 /* 修改滚动条的样式 */
 .scrollable-container {
   /* 添加滚动条样式（适用于 Safari 和 Edge） */

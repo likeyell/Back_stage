@@ -1,23 +1,23 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import LoginView from "@/views/LoginView/LoginView.vue";
-import indexView from "@/views/indexView.vue";
+import result404 from "@/views/result404.vue";
 
 const routes: Array<RouteRecordRaw> = [
-  {
-    path: "/",
-    component: LoginView,
-  },
   // 登录、注册
   {
     path: "/LoginView",
     name: "LoginView",
     component: LoginView,
+    meta: {
+      navigationDisplayHide: false,
+      currentNavigationPage: "1",
+    },
   },
-  // 首页
+  // 404
   {
-    path: "/indexView",
-    name: "indexView",
-    component: indexView,
+    path: "/:catchAll(.*)",
+    name: "404",
+    component: result404,
   },
 ];
 

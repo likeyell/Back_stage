@@ -134,7 +134,9 @@ import {
   registeredAccount,
 } from "@/service";
 import useCountdown from "@/hooks/useCountdown";
-import router from "@/router";
+
+// 获取路由实例
+const router = useRouter();
 
 // 使用倒计时功能函数，并传入初始值 30 秒
 const { countdown, isCountdownRunning, startCountdown } = useCountdown(30);
@@ -195,7 +197,7 @@ const { run: runRegisteredAccount } = useRequest(
         type: "success",
         message: `账号注册成功`,
       });
-      router.push("/indexView");
+      router.push("/index");
     },
   },
 );
